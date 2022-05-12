@@ -49,7 +49,10 @@ class TwitterService extends App with TwitterCredentials with LazyLogging {
       "content",
       "sentiment"
     ) // TODO: zipped only works with 3 items, use transpose
-    df.coalesce(1).write.csv("output")
+    df.coalesce(1)
+      .write
+      .mode(SaveMode.Overwrite)
+      .csv("output")
     spark.stop()
   }
 
